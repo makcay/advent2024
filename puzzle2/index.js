@@ -19,5 +19,23 @@ function isReportSafe(report) {
     return true;
 }
 
-console.log(reports.map(r=>isReportSafe(r)).filter(r=>r==true).length);
+function canReportBeSafe(report) {
+    if (isReportSafe(report)) {
+        return true;
+    }
+    for(let i=0;i<report.length;i++) {
+        let newReport = []
+        for(let j=0;j<report.length;j++) {
+            if (i!=j) {
+                newReport.push(report[j])
+            }
+        }
+        if (isReportSafe(newReport)) {
+            return true;
+        }
+    }
+    return false;
+}
 
+console.log(reports.map(r=>isReportSafe(r)).filter(r=>r==true).length);
+console.log(reports.map(r=>canReportBeSafe(r)).filter(r=>r==true).length);
