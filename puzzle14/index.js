@@ -71,7 +71,11 @@ function getFigure() {
     for(const r of robots) {
         figure[r[0][1]][r[0][0]] = '#'
     }
-    return figure
+    const figureStr = []
+    for(let i=0;i<M;i++) {
+        figureStr.push(figure[i].join(""))
+    }
+    return figureStr
 }
 
 
@@ -82,8 +86,7 @@ for(let i=0;i<1000000;i++) {
     }
     const figure = getFigure()
     let count = 0
-    for(let k=0;k<figure.length;k++){
-        const line = figure[k].join("")
+    for(const line of figure){
         if (line.includes("###################")){
             count++
         }
@@ -94,6 +97,7 @@ for(let i=0;i<1000000;i++) {
         }
     }
     if (found) {
+        console.log(figure)
         break
     }
 }
